@@ -1,12 +1,15 @@
-import { Component, Input } from '@angular/core';
-import { Hero } from '../hero';
+import { Component, Input, OnInit } from '@angular/core';
+import { Hero } from '../shared/hero-model';
+import { HeroService } from '../shared/hero.service';
 
 @Component({
-  selector: 'app-hero-form',
+  selector: 'app-heroes-hero-form',
   templateUrl: './hero-form.component.html',
   styleUrls: ['./hero-form.component.css'],
 })
-export class HeroFormComponent {
+export class HeroFormComponent implements OnInit {
+
+  constructor(private heroService: HeroService){}
 
   powers = ['Really Smart', 'Super Flexiblr', 'Super Hot', 'Weather Changer'];
 
@@ -25,4 +28,13 @@ export class HeroFormComponent {
   newHero() {
     this.model = new Hero(42,'', '');
   }
+
+
+  heroes: Hero[] = [];
+
+  ngOnInit(): void {
+    this.heroService.getHeroes()
+            .then(heroes => this.heroes = heroes );
+  }
+
 }
