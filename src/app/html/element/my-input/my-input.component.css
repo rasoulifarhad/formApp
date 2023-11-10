@@ -1,0 +1,10 @@
+.my-input {
+  border: 1px solid lightgray;
+  height: 25px;
+  line-height: 25px;
+  padding-left: 5px;
+  width: 170px;
+  color: lightgray;
+  vertical-align: middle;
+}
+
